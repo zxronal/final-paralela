@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,8 +16,11 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User saveUser(User user){
-        return this.saveUser(user);
+    public User saveUser(User user) {
+        if(user.getUserId() == null) {
+            user.setCreatedAt(new Date());
+        }
+        return this.userRepository.save(user);
     }
 
     public List<User> listUsers() {
