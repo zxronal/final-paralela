@@ -17,9 +17,6 @@ public class UserService {
     private UserRepository userRepository;
 
     public User saveUser(User user) {
-        if(user.getUserId() == null) {
-            user.setCreatedAt(new Date());
-        }
         return this.userRepository.save(user);
     }
 

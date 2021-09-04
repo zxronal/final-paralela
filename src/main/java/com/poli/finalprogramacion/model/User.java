@@ -1,10 +1,14 @@
 package com.poli.finalprogramacion.model;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "users")
+@EntityListeners(AuditingEntityListener.class)
 public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -18,6 +22,7 @@ public class User {
 
     private Boolean deleted = false;
 
+    @CreatedDate
     private Date createdAt;
 
     public User() {
